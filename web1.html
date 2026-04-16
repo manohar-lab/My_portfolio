@@ -9,6 +9,124 @@ body{
   background:#0a1f3d;
   color:white;
   overflow-x:hidden;
+  position:relative;
+}
+
+/* ANIMATED BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle,rgba(0,212,255,0.3),transparent);
+  top:-200px;
+  left:-200px;
+  animation:moveBlob1 8s infinite ease-in-out;
+  z-index:-1;
+  pointer-events:none;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle,rgba(0,102,255,0.2),transparent);
+  bottom:-200px;
+  right:-200px;
+  animation:moveBlob2 10s infinite ease-in-out;
+  z-index:-1;
+  pointer-events:none;
+}
+
+@keyframes moveBlob1{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(100px,100px)}
+  50%{transform:translate(50px,150px)}
+  75%{transform:translate(100px,50px)}
+}
+
+@keyframes moveBlob2{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-100px,-100px)}
+  50%{transform:translate(-150px,-50px)}
+  75%{transform:translate(-50px,-100px)}
+}
+
+/* FLOATING PARTICLES */
+.particle{
+  position:fixed;
+  width:4px;
+  height:4px;
+  background:rgba(0,212,255,0.5);
+  border-radius:50%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.particle:nth-child(1){animation:float 6s infinite ease-in-out;top:10%;left:10%}
+.particle:nth-child(2){animation:float 8s infinite ease-in-out;top:20%;left:80%;animation-delay:1s}
+.particle:nth-child(3){animation:float 10s infinite ease-in-out;top:50%;left:5%;animation-delay:2s}
+.particle:nth-child(4){animation:float 7s infinite ease-in-out;top:70%;left:90%;animation-delay:3s}
+.particle:nth-child(5){animation:float 9s infinite ease-in-out;top:30%;left:50%;animation-delay:1.5s}
+.particle:nth-child(6){animation:float 11s infinite ease-in-out;top:80%;left:40%;animation-delay:2.5s}
+.particle:nth-child(7){animation:float 8s infinite ease-in-out;top:15%;left:60%;animation-delay:3.5s}
+.particle:nth-child(8){animation:float 10s infinite ease-in-out;top:60%;left:20%;animation-delay:0.5s}
+
+@keyframes float{
+  0%,100%{transform:translateY(0px) translateX(0px);opacity:0.5}
+  50%{transform:translateY(-100px) translateX(50px);opacity:1}
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+  header{
+    padding:10px 15px;
+  }
+  
+  .logo{
+    font-size:1.4rem;
+  }
+  
+  nav a{
+    margin-left:10px;
+    font-size:0.9rem;
+  }
+  
+  .hero{
+    padding:20px;
+    height:auto;
+    min-height:70vh;
+  }
+  
+  .hero h1{
+    font-size:2rem;
+  }
+  
+  .hero p{
+    font-size:0.95rem;
+  }
+  
+  section{
+    padding:40px 15px;
+  }
+  
+  h2{
+    font-size:1.5rem;
+  }
+  
+  .cards{
+    grid-template-columns:1fr;
+  }
+  
+  .contact-links{
+    flex-direction:column;
+  }
+  
+  .contact-links a{
+    width:100%;
+    justify-content:center;
+  }
 }
 
 /* HEADER */
@@ -45,6 +163,13 @@ nav a{
   align-items:center;
   text-align:center;
   background:linear-gradient(180deg,#0f3a80,#0a1f3d);
+  position:relative;
+  animation:gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift{
+  0%,100%{background:linear-gradient(180deg,#0f3a80,#0a1f3d)}
+  50%{background:linear-gradient(180deg,#1a4d99,#0a1f3d)}
 }
 
 .hero h1{
@@ -180,7 +305,16 @@ h2{
 }
 
 </style></head>
-<body><header>
+<body>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<header>
 <div class="logo">MR Portfolio</div>
 <nav>
 <a href="#about">About</a>
